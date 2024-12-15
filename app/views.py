@@ -1,7 +1,8 @@
+from app.models import Article
 from django.shortcuts import render
-
-from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse("hello world")
+    articles = Article.objects.all()
+    return render(request, "app/home.html", {"articles": articles})
+
