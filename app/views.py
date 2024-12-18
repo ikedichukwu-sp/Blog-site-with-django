@@ -1,7 +1,9 @@
 from app.models import Article
 from django.shortcuts import render
-from app.forms import CreateArticleForm
+# from app.forms import CreateArticleForm
 from django.shortcuts import render, redirect
+from django.views.generic  import CreateView
+from django.urls import reverse_lazy
 
 
 def home(request):
@@ -9,6 +11,15 @@ def home(request):
     return render(request, "home.html", {"articles": articles})
 
 
+# using class base view, django will create the form automatically
+class ArticleCreateView(CreateView):
+    template_name = "article_create.html"
+    model = Article
+    fields = ["title", "status", "content", "word_count", "twitter_post"]
+    success_url = reverse_lazy("home")
+
+
+"""  this is function base view that goes with form
 def create_article(request):
     if request.method == "POST":
         form = CreateArticleForm(request.POST)
@@ -28,3 +39,4 @@ def create_article(request):
 
     # Render the form for both GET and invalid POST requests
     return render(request, "article_create.html", {"form": form})
+"""
