@@ -23,14 +23,14 @@ def home(request):
 class ArticleCreateView(CreateView):
     template_name = "article_create.html"
     model = Article
-    fields = ["title", "status", "content", "word_count", "twitter_post"]
+    fields = ["title", "status", "content",  "twitter_post"]
     success_url = reverse_lazy("home")
 
 
 class ArticleUpdateView(UpdateView):
     template_name = "article_update.html"
     model = Article
-    fields = ["title", "status", "content", "word_count", "twitter_post"]
+    fields = ["title", "status", "content", "twitter_post"]
     success_url = reverse_lazy("home")
     context_object_name = "articles"
 

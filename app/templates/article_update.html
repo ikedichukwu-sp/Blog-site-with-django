@@ -3,6 +3,7 @@
 {% block content %}
 
     <h1>Edit Article</h1>
+    <p>{{ articles.word_count }} word{{ articles.word_count | pluralize }}.</p>
     <p>Last edited on {{ articles.updated_at | date:"jS F Y" }}</p>
     <form method="POST">
         {% csrf_token %}
@@ -10,7 +11,7 @@
         <button type="submit">Save</button>
     </form>
     <a href="{% url 'home' %}">Back to list</a>
-    <a href="{% url 'delete_article' article.id %}">Delete article</a>
+    <a href="{% url 'delete_article' articles.id %}">Delete article</a>
 
 
 {% endblock content %}

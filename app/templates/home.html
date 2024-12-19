@@ -4,13 +4,15 @@
     <h1>Articles</h1>
 
     <a href="{% url 'create_article' %}">Create article</a>
+
+
     {% if articles %}
         <ul>
             {% for article in articles %}
-                <li> <a href="{% url 'update_article' article.id %}">{{ article.title }}</a> with {{ article.word_count }} words</li>
+                <li> <a href="{% url 'update_article' articles.id %}">{{ article.title }}</a> with {{ article.word_count }} word{{ articles.word_count | pluralize }}</li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No articles available.</p>
+        <p>You have no articles available.</p>
     {% endif %}
 {% endblock content %}
