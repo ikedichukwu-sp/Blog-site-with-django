@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Course</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>Articles</h1>
     {% if articles %}
         <ul>
@@ -16,5 +11,4 @@
     {% else %}
         <p>No articles available.</p>
     {% endif %}
-</body>
-</html>
+{% endblock content %}
