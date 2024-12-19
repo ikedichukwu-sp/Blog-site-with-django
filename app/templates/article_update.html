@@ -2,12 +2,12 @@
 
 {% block content %}
 
-    <h1>Edith Article</h1>
-        <form method="POST">
-            {% csrf_token %}
-
-            {{ form.as_p }}
-            <button type=submit">Save</button>
-        </form>
+    <h1>Edit Article</h1>
+    <p>Last edited on {{ articles.updated_at | date:"jS F Y" }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
 
 {% endblock content %}
