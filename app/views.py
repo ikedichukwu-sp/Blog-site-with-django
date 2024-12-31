@@ -4,6 +4,11 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+
+
+def home(request):
+    return HttpResponse("Welcome to the homepage!")
 
 
 class ArticleListView(ListView):
@@ -23,8 +28,12 @@ def home(request):
 class ArticleCreateView(CreateView):
     template_name = "article_create.html"
     model = Article
-    fields = ["title", "status", "content",  "twitter_post"]
+    fields = ["title", "status", "content", "twitter_post"]
     success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
 
 class ArticleUpdateView(UpdateView):

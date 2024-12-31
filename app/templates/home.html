@@ -5,11 +5,13 @@
 
     <a href="{% url 'create_article' %}">Create article</a>
 
-
     {% if articles %}
         <ul>
             {% for article in articles %}
-                <li> <a href="{% url 'update_article' articles.id %}">{{ article.title }}</a> with {{ article.word_count }} word{{ articles.word_count | pluralize }}</li>
+                <li>
+                    <a href="{% url 'update_article' pk=article.pk %}">{{ article.title }}</a>
+                    with {{ article.word_count }} word{{ article.word_count|pluralize }}
+                </li>
             {% endfor %}
         </ul>
     {% else %}
