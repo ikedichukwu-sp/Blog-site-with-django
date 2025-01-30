@@ -3,6 +3,9 @@ FROM python:3.11-bullseye
 # Set environment variable to ensure Python outputs everything to the console
 ENV PYTHONUNBUFFERED=1
 
+RUN apt update
+RUN apt install gettext -y
+
 # Create and set the working directory
 WORKDIR /code
 
