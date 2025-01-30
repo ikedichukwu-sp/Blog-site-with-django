@@ -16,6 +16,14 @@ class UserProfile(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    @property
+    def article_count(self):
+        return self.articles.count()  # the articles came from the related_name giving in the creator field
+
+    @property
+    def written_words(self):
+        return self.articles.aggregate(models.sum("word_count"))["word_count__sum"] or 0
+
 
 ARTICLE_STATUS = (
     ("draft", "draft"),
