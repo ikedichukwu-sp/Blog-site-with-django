@@ -5,9 +5,16 @@ from django.utils.translation import gettext_lazy as _   # this translate text t
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
+from app.managers import Userprofilemanager
+
 
 class UserProfile(AbstractUser):
-    pass
+    email = models.EmailField(_("email address"), max_length=225, unique=True)
+
+    objects = Userprofilemanager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
 
 
 ARTICLE_STATUS = (
