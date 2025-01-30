@@ -22,7 +22,7 @@ class UserProfile(AbstractUser):
 
     @property
     def written_words(self):
-        return self.articles.aggregate(models.sum("word_count"))["word_count__sum"] or 0
+        return self.articles.aggregate(models.Sum("word_count"))["word_count__sum"] or 0
 
 
 ARTICLE_STATUS = (
