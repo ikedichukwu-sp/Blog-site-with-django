@@ -14,10 +14,11 @@ COPY requirements.txt /code/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project
-COPY . /code/
+COPY . .
+RUN chmod 755 /code/start-django.sh
 
 # Expose the port Django will run on
 EXPOSE 8000
 
 # Run the Django application
-ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["/code/start-django.sh"]
